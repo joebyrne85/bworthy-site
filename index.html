@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B.Worthy Intelligence — Clarity through complexity</title>
+  <meta name="description" content="B.Worthy Intelligence helps established firms transition into the AI-native world. Strategy through implementation, grounded in deep domain expertise." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;700&family=DM+Sans:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --charcoal:      #1A1A1A;
+      --copper:        #B87333;
+      --copper-hover:  #C9853D;
+      --copper-border: rgba(184, 115, 51, 0.18);
+      --off-white:     #F7F5F2;
+      --warm-stone:    #EEEAE4;
+      --white:         #ffffff;
+      --text-body:     rgba(247, 245, 242, 0.72);
+      --text-muted:    rgba(247, 245, 242, 0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--charcoal);
+      color: var(--off-white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      padding: 18px 48px;
+      background: rgba(26, 26, 26, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom-color: rgba(184, 115, 51, 0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-strata {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5px;
+      align-items: flex-end;
+    }
+
+    .nav-strata-bar {
+      height: 3px;
+      border-radius: 1.5px;
+      background: var(--copper);
+    }
+
+    .nav-strata-bar:nth-child(1) { width: 7px;  opacity: 0.25; }
+    .nav-strata-bar:nth-child(2) { width: 12px; opacity: 0.5;  }
+    .nav-strata-bar:nth-child(3) { width: 18px; opacity: 0.75; }
+    .nav-strata-bar:nth-child(4) { width: 24px; opacity: 1;    }
+
+    .nav-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--off-white);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--copper); }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-muted);
+      transition: background 0.3s ease;
+    }
+
+    .mobile-toggle:hover span { background: var(--copper); }
+
+    /* ══════════════════════════════════════
+       HERO
+       ══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 48px 80px;
+    }
+
+    /* Ambient glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 115, 51, 0.07) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+    }
+
+    /* Strata decoration — bottom of hero */
+    .hero-strata {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      pointer-events: none;
+    }
+
+    .hero-strata-line {
+      height: 1px;
+      background: var(--copper);
+      transform-origin: left;
+    }
+
+    .hero-strata-line:nth-child(1) { width: 12%; opacity: 0.06; }
+    .hero-strata-line:nth-child(2) { width: 22%; opacity: 0.09; }
+    .hero-strata-line:nth-child(3) { width: 35%; opacity: 0.12; }
+    .hero-strata-line:nth-child(4) { width: 52%; opacity: 0.10; }
+    .hero-strata-line:nth-child(5) { width: 70%; opacity: 0.07; }
+    .hero-strata-line:nth-child(6) { width: 88%; opacity: 0.04; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-mark {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      align-items: flex-end;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-mark-bar {
+      height: 6px;
+      border-radius: 1.5px;
+      background: var(--copper);
+    }
+
+    .hero-mark-bar:nth-child(1) { width: 14px; opacity: 0.3; }
+    .hero-mark-bar:nth-child(2) { width: 24px; opacity: 0.5; }
+    .hero-mark-bar:nth-child(3) { width: 34px; opacity: 0.7; }
+    .hero-mark-bar:nth-child(4) { width: 44px; opacity: 1; }
+
+    .hero-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 52px;
+      font-weight: 200;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .hero-descriptor {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    .hero-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+
+    .hero-scroll {
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.2s forwards;
+    }
+
+    .hero-scroll a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .hero-scroll a:hover { color: var(--copper); }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--copper), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.8; }
+    }
+
+    /* ══════════════════════════════════════
+       SECTIONS — GENERAL
+       ══════════════════════════════════════ */
+    .section {
+      padding: 120px 48px;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 24px;
+    }
+
+    .section-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 200;
+      line-height: 1.3;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-body);
+      max-width: 600px;
+    }
+
+    .section-body p { margin-bottom: 20px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════
+       WHAT WE DO
+       ══════════════════════════════════════ */
+    .what-we-do {
+      border-top: 1px solid rgba(184, 115, 51, 0.08);
+    }
+
+    .approach-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .approach-point {
+      position: relative;
+    }
+
+    .approach-point::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--copper-border);
+      margin-bottom: 20px;
+    }
+
+    .approach-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--copper);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .approach-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .approach-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ══════════════════════════════════════
+       PRODUCTS
+       ══════════════════════════════════════ */
+    .products {
+      border-top: 1px solid rgba(184, 115, 51, 0.08);
+    }
+
+    .product-card {
+      margin-top: 40px;
+      border: 1px solid var(--copper-border);
+      border-radius: 2px;
+      padding: 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      transition: border-color 0.3s ease;
+    }
+
+    .product-card:hover {
+      border-color: rgba(184, 115, 51, 0.4);
+    }
+
+    .product-card-left { flex: 1; }
+
+    .product-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--copper);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .product-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .product-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-body);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--copper);
+      text-decoration: none;
+      transition: color 0.3s ease, gap 0.3s ease;
+    }
+
+    .product-link:hover {
+      color: var(--copper-hover);
+      gap: 12px;
+    }
+
+    .product-link-arrow {
+      font-size: 14px;
+    }
+
+    .product-badge {
+      flex-shrink: 0;
+      align-self: center;
+      border: 1px solid var(--copper-border);
+      padding: 10px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    /* ══════════════════════════════════════
+       CONTACT
+       ══════════════════════════════════════ */
+    .contact {
+      border-top: 1px solid rgba(184, 115, 51, 0.08);
+      text-align: center;
+    }
+
+    .contact .section-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-email {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      color: var(--copper);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-top: 8px;
+    }
+
+    .contact-email:hover { color: var(--copper-hover); }
+
+    .contact-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════ */
+    footer {
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(184, 115, 51, 0.06);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-strata {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      align-items: flex-end;
+    }
+
+    .footer-strata-bar {
+      height: 2px;
+      border-radius: 1px;
+      background: var(--copper);
+    }
+
+    .footer-strata-bar:nth-child(1) { width: 4px;  opacity: 0.3; }
+    .footer-strata-bar:nth-child(2) { width: 7px;  opacity: 0.6; }
+    .footer-strata-bar:nth-child(3) { width: 10px; opacity: 1;   }
+
+    .footer-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.15);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════════
+       SCROLL REVEAL
+       ══════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(12px);
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(184, 115, 51, 0.08);
+      }
+
+      .mobile-toggle { display: flex; }
+
+      .hero { padding: 100px 24px 60px; }
+      .hero-name { font-size: 28px; letter-spacing: 6px; }
+      .hero-tagline { font-size: 16px; }
+
+      .section { padding: 80px 24px; }
+      .section-heading { font-size: 26px; }
+
+      .approach-points { grid-template-columns: 1fr; gap: 28px; }
+
+      .product-card {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .product-badge { align-self: flex-start; }
+
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name { font-size: 22px; letter-spacing: 4px; }
+      .hero-descriptor { font-size: 11px; letter-spacing: 3px; }
+      .contact-email { font-size: 16px; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-strata">
+      <div class="nav-strata-bar"></div>
+      <div class="nav-strata-bar"></div>
+      <div class="nav-strata-bar"></div>
+      <div class="nav-strata-bar"></div>
+    </div>
+    <span class="nav-name">B.Worthy</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-strata">
+    <div class="hero-strata-line"></div>
+    <div class="hero-strata-line"></div>
+    <div class="hero-strata-line"></div>
+    <div class="hero-strata-line"></div>
+    <div class="hero-strata-line"></div>
+    <div class="hero-strata-line"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-mark">
+      <div class="hero-mark-bar"></div>
+      <div class="hero-mark-bar"></div>
+      <div class="hero-mark-bar"></div>
+      <div class="hero-mark-bar"></div>
+    </div>
+    <div class="hero-name">B.Worthy</div>
+    <div class="hero-descriptor">Intelligence</div>
+    <div class="hero-tagline">Clarity through complexity</div>
+    <div class="hero-scroll">
+      <a href="#what-we-do">
+        <span>Discover</span>
+        <div class="scroll-line"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHAT WE DO ═══════════ -->
+<section class="section what-we-do" id="what-we-do">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading">We help established firms transition into the AI-native world</h2>
+      <div class="section-body">
+        <p>Most organisations know AI will reshape their industry. Fewer know where to start, what to prioritise, or how to move from ambition to execution without wasting time and capital on the wrong things.</p>
+        <p>We work with leadership teams to cut through the noise. We deep-dive into your core processes, identify where AI creates real, measurable value, and design logical, scalable solutions from strategy through to implementation. No hype. No generic frameworks. Just clear thinking applied to your specific reality.</p>
+        <p>Our roots are in financial services, where we bring deep domain expertise across investment management, risk, and operations. We also work with firms across complex, regulated industries where the stakes of getting AI wrong are too high to leave to guesswork.</p>
+      </div>
+    </div>
+
+    <div class="approach-points reveal">
+      <div class="approach-point">
+        <div class="approach-num">01</div>
+        <div class="approach-title">Understand</div>
+        <div class="approach-desc">We map your processes, systems, and decision points to understand how your business actually works before proposing anything.</div>
+      </div>
+      <div class="approach-point">
+        <div class="approach-num">02</div>
+        <div class="approach-title">Design</div>
+        <div class="approach-desc">We architect solutions that are logical, scalable, and grounded in what AI can realistically deliver for your context.</div>
+      </div>
+      <div class="approach-point">
+        <div class="approach-num">03</div>
+        <div class="approach-title">Implement</div>
+        <div class="approach-desc">We stay through delivery. Strategy without execution is just a document. We build alongside your teams to make it real.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section class="section products" id="products">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Products</div>
+      <h2 class="section-heading">Software built for the people who use it</h2>
+      <div class="section-body">
+        <p>Alongside our consulting practice, we build purpose-built software products that solve real problems for specific communities.</p>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-card-left">
+        <div class="product-eyebrow">Mobile App</div>
+        <div class="product-name">SquadManager Pro</div>
+        <div class="product-desc">An all-in-one coaching platform designed by coaches for coaches. Manage player profiles, training sessions, drills, match records, and team communications — all in one place.</div>
+        <a href="https://squadmanagerpro.bworthyintelligence.com" class="product-link" target="_blank" rel="noopener noreferrer">
+          Learn more <span class="product-link-arrow">→</span>
+        </a>
+      </div>
+      <div class="product-badge">Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="section contact" id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-heading">Start a conversation</h2>
+      <a href="mailto:info@bworthyintelligence.com" class="contact-email">info@bworthyintelligence.com</a>
+      <p class="contact-note">We'd welcome the chance to understand your challenges and explore how we can help.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-strata">
+      <div class="footer-strata-bar"></div>
+      <div class="footer-strata-bar"></div>
+      <div class="footer-strata-bar"></div>
+    </div>
+    <span class="footer-text">&copy; 2026 B.Worthy Intelligence Pty Ltd. All rights reserved.</span>
+  </div>
+  <span class="footer-right">Clarity through complexity</span>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
